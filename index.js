@@ -7,8 +7,8 @@ const openai = new OpenAI({
 });
 const { Events, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
-global.guildId = '797133925616975933';
-global.roleId = '1173006836312588339';
+global.guildId = '1211685976368226396';
+global.roleId = '1212538273625546762';
 
 const Bot = require('./botClass.js');
 const botToken = process.env.DISCORD_TOKEN;
@@ -33,34 +33,11 @@ myBot.client.once(Events.ClientReady, readyClient => {
     webhookApp.listen(PORT, () => {
         console.log(`Webhook service running on port ${PORT}`);
     });
-    deleteBotMessagesToUser('408163545830785024');
+    //deleteBotMessagesToUser('408163545830785024');
 });
+ 
 
 
-
-/*
-myBot.client.once(Events.ClientReady, readyClient => {
-    console.log(`Ready! Logged in as ${readyClient.user.tag}`);
-
-    const embed = new EmbedBuilder()
-        .setColor('#62E643') // Custom border color
-        .setTitle('Exclusive Access to Rich By Noon')
-        .setDescription('For access to the money making members only Livestreams and Community chats "Rich By Noon",')
-        .addFields({ name: 'Available', value: '24/7 Access 💰🤑', inline: true })
-        .setImage('https://i.imgur.com/oI9k9PL.jpg');
-
-    const row = new ActionRowBuilder()
-        .addComponents(
-            new ButtonBuilder()
-                .setCustomId('get_access')
-                .setLabel('Get Access')
-                .setStyle(ButtonStyle.Primary)
-        );
-
-    const channel = myBot.client.channels.cache.get('1020491005092442132');
-    channel.send({ embeds: [embed], components: [row] });
-});
-*/
 
 
 // Log in to Discord with your client's token
@@ -73,7 +50,7 @@ myBot.client.on('interactionCreate', async interaction => {
     if (interaction.customId === 'get_access') {
         // Open a DM with the user
         const dmChannel = await interaction.user.createDM();
-        dmChannel.send(`Hey there! Did you already create your account at https://richbynoon.live ? 
+        dmChannel.send(`Hey there! Did you already create your account at https://buy.stripe.com/eVa02MeUX9h79tSfZx ? 
 If so...shoot me the email you used to sign up and ill activate your account 😊`);
         interaction.reply({ content: 'I just sent you a DM!', ephemeral: true });
     }
@@ -99,13 +76,13 @@ myBot.client.on('messageCreate', async (message) => {
         // Prepend a system prompt
         const systemPrompt = {
             role: 'system',
-            content: `You are a human like artificial intelligence that handles member verification for "The App God"  also known as "AG" he is a young black stock options trader in atlanta that has a trading community called "Rich By Noon" and a Private Youtube Livestream 
+            content: `You are a human like artificial intelligence that handles member verification for "Techpreneur" a discord community for tech enthusiasts 
 
-			You verify that discord members have active subscriptions in stripe so that you can assign them a member role "richbynoon" and they can view the locked channels "livestream" and "community chat" which allows them to see the private youtube links we use for the rich by noon livestream. 
+			You verify that discord members have active subscriptions in stripe so that you can assign them a member role "techprenuers" and they can view the members only channels.
 					   
-			If its the first message say hi and ask if they need help with activating their discord account to get access to the "Rich By Noon" Private Livestreams. Then Ask users for their email to verify their memberships. So you can add their member role and give them access to the locked discord channels so they can start making money in the stock market.
+			If its the first message say hi and ask if they need help with activating their discord account to get access to the Techpreneur Members channels. Then Ask users for their email to verify their memberships. So you can add their member role and give them access to the locked discord channels.
 			
-            If they havent signed up yet they can do so at https://richbynoon.live to get full access
+            If they havent signed up yet they can do so at https://buy.stripe.com/eVa02MeUX9h79tSfZx to get full access
 		    
             If they say that they are an existing member who had access but lost it. Tell them you need their email just to verify if their old subscription is still active 
 
