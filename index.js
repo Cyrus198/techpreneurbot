@@ -48,11 +48,27 @@ myBot.client.on('interactionCreate', async interaction => {
     if (!interaction.isButton()) return;
 
     if (interaction.customId === 'get_access') {
-        // Open a DM with the user
-        const dmChannel = await interaction.user.createDM();
-        dmChannel.send(`Hey there! Did you already create your account at https://buy.stripe.com/eVa02MeUX9h79tSfZx ? 
-If so...shoot me the email you used to sign up and ill activate your account 😊`);
-        interaction.reply({ content: 'I just sent you a DM!', ephemeral: true });
+        try {
+            // Attempt to open a DM with the user
+            const dmChannel = await interaction.user.createDM();
+            await dmChannel.send(`Hey there! Did you already create your account at https://buy.stripe.com/eVa02MeUX9h79tSfZx ? 
+If so...shoot me the email you used to sign up and I'll activate your account 😊`);
+
+            // Attempt to send an ephemeral reply to the interaction
+            await interaction.reply({ content: 'I just sent you a DM!', ephemeral: true });
+        } catch (error) {
+            // Log the error for debugging purposes
+            console.error('Failed to handle interaction:', error);
+
+            // Check if the error is because the interaction expired
+            if (error.code === 10062) {
+                console.log('Interaction expired');
+                // If the interaction is expired, we're doing nothing as per your request
+                console.log('expired so do nothing');
+            } else {
+                // Handle other types of errors here, if necessary
+            }
+        }
     }
 });
 
